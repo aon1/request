@@ -34,8 +34,7 @@ object Main {
                 (JsPath \\ "body").read[String]
             )(Comment)
 
-    // val Url = "https://jsonplaceholder.typicode.com/posts"
-    val Url = "http://localhost:3000"
+    val Url = "https://jsonplaceholder.typicode.com/posts"
     val GET = 1
     val POST = 2
  
@@ -46,6 +45,7 @@ object Main {
         get("/posts")
         get("/posts/1")
         post("/posts", Some(data))
+        get("posts/1/comments")
     }
 
     def request(url: String, method: Int, data: Option[String] = None): Future[HttpResponse] = {
@@ -84,7 +84,7 @@ object Main {
 
                     val r = Random.alphanumeric
                     val name = s"request_${(r take 10).mkString}"
-                    val filename = name + "-" + Utils.getDate() + ".txt"
+                    val filename = name + "-" + Utils.getDate() + ".txt" 
 
                     Unmarshal(content.entity).to[String].map { 
                         s => Utils.saveToFile(filename, s.toString)
