@@ -34,7 +34,7 @@ object Main {
                 (JsPath \\ "body").read[String]
             )(Comment)
 
-    val Url = "https://jsonplaceholder.typicode.com/posts"
+    val Url = "https://jsonplaceholder.typicode.com"
     val GET = 1
     val POST = 2
  
@@ -45,7 +45,7 @@ object Main {
         get("/posts")
         get("/posts/1")
         post("/posts", Some(data))
-        get("posts/1/comments")
+        get("/posts/1/comments")
     }
 
     def request(url: String, method: Int, data: Option[String] = None): Future[HttpResponse] = {
